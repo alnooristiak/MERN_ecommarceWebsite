@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -9,13 +10,13 @@ const Header = () => {
           aria-label="Global"
         >
           <div className="flex items-center justify-between">
-            <a
+            <Link
               className="flex-none text-xl font-semibold text-white"
-              href="#"
+              to="/"
               aria-label="Brand"
             >
               Brand
-            </a>
+            </Link>
             <div className="sm:hidden">
               <button
                 type="button"
@@ -53,31 +54,31 @@ const Header = () => {
             className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
           >
             <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7">
-              <a
+              <Link
                 className="font-medium text-white sm:py-6"
-                href="#"
+                to="/about"
                 aria-current="page"
               >
-                Landing
-              </a>
-              <a
+                About
+              </Link>
+              <Link
                 className="font-medium text-white/[.8] hover:text-white sm:py-6"
-                href="#"
+                to="/contact"
               >
-                Account
-              </a>
-              <a
+                Contact
+              </Link>
+              <Link
                 className="font-medium text-white/[.8] hover:text-white sm:py-6"
-                href="#"
+                to="/policy"
               >
-                Work
-              </a>
-              <a
+                PrivetPolicy
+              </Link>
+              <Link
                 className="font-medium text-white/[.8] hover:text-white sm:py-6"
-                href="#"
+                to="/cart"
               >
-                Blog
-              </a>
+                Cart
+              </Link>
               <div className="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none] sm:[--trigger:hover] sm:py-4">
                 <button
                   type="button"

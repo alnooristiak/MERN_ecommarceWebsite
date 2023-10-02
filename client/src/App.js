@@ -4,6 +4,9 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import PrivetPolicy from "./pages/PrivetPolicy";
 
 function App() {
   return (
@@ -12,9 +15,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<Home />} />
-          <Route path="/contact" element={<Home />} />
-          <Route path="/policy" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/policy" element={<PrivetPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
