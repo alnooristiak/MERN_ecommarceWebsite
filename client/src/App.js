@@ -8,6 +8,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import PrivetPolicy from "./pages/PrivetPolicy";
 import Register from "./pages/Auth/Register";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Login from "./pages/Auth/Login";
 
 function App() {
   return (
@@ -20,10 +23,14 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/policy" element={<PrivetPolicy />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </Router>
+
+      {/* Add the ToastContainer component */}
+      <ToastContainer />
     </>
   );
 }
