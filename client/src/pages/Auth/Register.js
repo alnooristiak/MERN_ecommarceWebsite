@@ -133,13 +133,13 @@ const Register = () => {
 
             <div>
               <button className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                Submit
+                Register
               </button>
             </div>
 
             <div className="flex justify-center text-center my-4">
               <h2>Already Have an user then ||</h2>
-              <Link>
+              <Link to="/login">
                 <span className="text-green-700 ml-3">Login</span>
               </Link>
             </div>
