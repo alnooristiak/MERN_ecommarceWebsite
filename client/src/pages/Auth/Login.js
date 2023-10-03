@@ -3,8 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import TittleText from "../../components/atoms/TittleText";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useAuth } from "../../components/context/auth";
 
 const Login = () => {
+  // custome hooks
+  const [auth, setAuth] = useAuth();
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -20,6 +24,13 @@ const Login = () => {
       );
       if (res.data.success) {
         toast.success(res.data.message);
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        // save user in local storeage
+        localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/");
       } else {
         toast.error(res.data.message);
