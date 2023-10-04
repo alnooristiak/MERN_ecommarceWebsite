@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Spinner = () => {
+const Spinner = ({ path = "login" }) => {
   const [count, setCount] = useState(5);
 
   const navigate = useNavigate();
@@ -12,11 +12,11 @@ const Spinner = () => {
       setCount((prevValue) => --prevValue);
     }, 1000);
     count === 0 &&
-      navigate("/login", {
+      navigate(`/&{path}`, {
         state: location.pathname,
       });
     return () => clearInterval(interval);
-  }, [count, navigate, location]);
+  }, [count, navigate, location, path]);
 
   return (
     <div className="flex justify-center items-center h-screen">
