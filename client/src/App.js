@@ -14,6 +14,8 @@ import Login from "./pages/Auth/Login";
 import Dashboard from "./pages/user/Dashboard";
 import PrivateRoute from "./components/Routes/Private";
 import ForgotPass from "./pages/Auth/ForgotPass";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import AdminRoute from "./components/Routes/AdminRoute";
 
 function App() {
   return (
@@ -22,11 +24,16 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* protected route start */}
+          {/* protected user route start */}
           <Route path="/dashboard" element={<PrivateRoute />}>
-            <Route path="" element={<Dashboard />} />
+            <Route path="user" element={<Dashboard />} />
           </Route>
-          {/* protected route end */}
+          {/* protected user route end */}
+          {/* protected admin route start */}
+          <Route path="/dashboard" element={<AdminRoute />}>
+            <Route path="admin" element={<AdminDashboard />} />
+          </Route>
+          {/* protected admin route end */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/policy" element={<PrivetPolicy />} />
