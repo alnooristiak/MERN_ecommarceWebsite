@@ -23,8 +23,8 @@ const Login = () => {
         `${process.env.REACT_APP_API}/api/v1/auth/login`,
         { email, password }
       );
-      if (res.data.success) {
-        toast.success(res.data.message);
+      if (res && res.data.success) {
+        toast.success(res.data && res.message);
         setAuth({
           ...auth,
           user: res.data.user,
