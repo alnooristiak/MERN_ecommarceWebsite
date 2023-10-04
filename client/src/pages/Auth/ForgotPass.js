@@ -1,38 +1,29 @@
-import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import TittleText from "../../components/atoms/TittleText";
-import { toast } from "react-toastify";
 import axios from "axios";
-import { useAuth } from "../../components/context/auth";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
-const Login = () => {
-  // custome hooks
-  const [auth, setAuth] = useAuth();
+import { Link, useNavigate } from "react-router-dom";
+import TittleText from "../../components/atoms/TittleText";
 
+const ForgotPass = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [answer, setAnswer] = useState("");
 
   //   handle form Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/login`,
-        { email, password }
+        `${process.env.REACT_APP_API}/api/v1/auth/forgot-password`,
+        { email, newPassword, answer }
       );
-      if (res.data.success) {
+      if (res && res.data.success) {
         toast.success(res.data.message);
-        setAuth({
-          ...auth,
-          user: res.data.user,
-          token: res.data.token,
-        });
-        // save user in local storeage
-        localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate(location.state || "/");
+
+        navigate("/login");
       } else {
         toast.error(res.data.message);
       }
@@ -46,7 +37,7 @@ const Login = () => {
       <div className="flex items-center justify-center p-12">
         {/* <!-- Author: FormBold Team --> */}
         <div className="mx-auto w-full max-w-[550px] bg-white">
-          <TittleText tittle="Login User" />
+          <TittleText tittle="Forgot Password" />
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label
@@ -77,25 +68,36 @@ const Login = () => {
                 type="password"
                 name="password"
                 id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
                 required
                 placeholder="Enter Password"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
 
-            <div className="py-3">
-              <Link to="/forgotpassword">
-                <p className="text-red-500 text-base font-bold">
-                  Forgot Password
-                </p>
-              </Link>
+            <div className="mb-3">
+              <label
+                htmlFor="answer"
+                className="mb-3 block text-base font-medium text-[#07074D]"
+              >
+                Answer The Question
+              </label>
+              <input
+                type="text"
+                name="answer"
+                id="answer"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                required
+                placeholder="What is your first crush name"
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              />
             </div>
 
             <div>
               <button className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                Login
+                Reset Password
               </button>
             </div>
 
@@ -112,4 +114,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPass;

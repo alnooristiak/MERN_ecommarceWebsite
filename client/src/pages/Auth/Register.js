@@ -12,6 +12,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
 
   //   handle form Submit
   const handleSubmit = async (e) => {
@@ -19,7 +20,7 @@ const Register = () => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/auth/register`,
-        { name, email, password, phone, address }
+        { name, email, password, phone, address, answer }
       );
       if (res.data.success) {
         toast.success(res.data.message);
@@ -42,7 +43,7 @@ const Register = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label
-                for="name"
+                htmlFor="name"
                 className="mb-3 block text-base font-medium text-[#07074D]"
               >
                 Full Name
@@ -60,7 +61,7 @@ const Register = () => {
             </div>
             <div className="mb-3">
               <label
-                for="email"
+                htmlFor="email"
                 className="mb-3 block text-base font-medium text-[#07074D]"
               >
                 Email Address
@@ -78,7 +79,7 @@ const Register = () => {
             </div>
             <div className="mb-3">
               <label
-                for="password"
+                htmlFor="password"
                 className="mb-3 block text-base font-medium text-[#07074D]"
               >
                 Password
@@ -96,7 +97,7 @@ const Register = () => {
             </div>
             <div className="mb-3">
               <label
-                for="phone"
+                htmlFor="phone"
                 className="mb-3 block text-base font-medium text-[#07074D]"
               >
                 Phone Number
@@ -114,7 +115,7 @@ const Register = () => {
             </div>
             <div className="mb-3">
               <label
-                for="address"
+                htmlFor="address"
                 className="mb-3 block text-base font-medium text-[#07074D]"
               >
                 Address
@@ -127,6 +128,25 @@ const Register = () => {
                 onChange={(e) => setAddress(e.target.value)}
                 required
                 placeholder="Enter your address"
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label
+                htmlFor="answer"
+                className="mb-3 block text-base font-medium text-[#07074D]"
+              >
+                Answer The Question
+              </label>
+              <input
+                type="text"
+                name="answer"
+                id="answer"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                required
+                placeholder="What is your first crush name"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>

@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Auth/Login";
 import Dashboard from "./pages/user/Dashboard";
 import PrivateRoute from "./components/Routes/Private";
+import ForgotPass from "./pages/Auth/ForgotPass";
 
 function App() {
   return (
@@ -21,14 +22,17 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          {/* protected route start */}
+          <Route path="/dashboard" element={<PrivateRoute />}>
+            <Route path="" element={<Dashboard />} />
+          </Route>
+          {/* protected route end */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/policy" element={<PrivetPolicy />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<PrivateRoute />}>
-            <Route path="" element={<Dashboard />} />
-          </Route>
+          <Route path="/forgotpassword" element={<ForgotPass />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
